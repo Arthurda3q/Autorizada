@@ -270,7 +270,7 @@ public class Painel {
 				prepararSQL.setString(9,fabricante);				
 				prepararSQL.setString(10,produto);				
 				prepararSQL.setString(11,serie);				
-				prepararSQL.setString(12,defeito);				
+				prepararSQL.setString(12,defeito);					
 				prepararSQL.setString(13,chegada);				
 				prepararSQL.setString(14,saida);				
 				prepararSQL.setString(15,defeitov);				
