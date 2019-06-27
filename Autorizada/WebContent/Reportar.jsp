@@ -93,11 +93,29 @@ if (request.getParameter("cod") != null){
 }
 %>
 
+<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+  <ul class="navbar-nav">
+  <a class="navbar-brand" href="index.jsp">
+  <img
+			src="https://i.imgur.com/taI8F9V.png"
+			style="width: 20px" align="left" />
+  </a>
+
+    <li class="nav-item active">
+      <a class="nav-link" href="index.jsp">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="Reportar.jsp">Abrir chamado</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="Painel.jsp">Painel</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Gerenciar</a>
+    </li>
+  </ul>
+</nav>
 <div class="container">
-<img
-			src="https://i.imgur.com/rejrZDU.jpg"
-			style="width: 80px" align="left" />
-<h2>Autorizada J.A</h2>
 <font size="2">Solicitar serviços.</font>
 <form id="form">
 <div id="msg"></div>

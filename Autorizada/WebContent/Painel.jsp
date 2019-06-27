@@ -19,15 +19,30 @@
 </head>
 <body>
 
-	<div class="container">
+<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+  <ul class="navbar-nav">
+  <a class="navbar-brand" href="index.jsp">
+  <img
+			src="https://i.imgur.com/taI8F9V.png"
+			style="width: 20px" align="left" />
+  </a>
 
-		<img
-			src="https://i.imgur.com/rejrZDU.jpg"
-			style="width: 150px" align="left" />
-		<h2>
-			<br>
-		</h2>
-		<p>Painel de Gerenciamento Autorizada J.A </p>
+    <li class="nav-item active">
+      <a class="nav-link" href="index.jsp">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="Reportar.jsp">Abrir chamado</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="Painel.jsp">Painel</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Gerenciar</a>
+    </li>
+  </ul>
+</nav>
+<br>
+	<div class="container">
 		<table class="table table-bordered">
 			<thead>
 				<tr>

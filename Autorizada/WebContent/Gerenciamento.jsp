@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Grenciar Serviços</title>
+<title>Grenciar - Autorizada J.A</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -121,11 +121,29 @@ if (request.getParameter("cod") != null){
 	
 
 </head>
+<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+  <ul class="navbar-nav">
+  <a class="navbar-brand" href="index.jsp">
+  <img
+			src="https://i.imgur.com/taI8F9V.png"
+			style="width: 20px" align="left" />
+  </a>
+
+    <li class="nav-item active">
+      <a class="nav-link" href="index.jsp">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="Reportar.jsp">Abrir chamado</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="Painel.jsp">Painel</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Gerenciar</a>
+    </li>
+  </ul>
+</nav>
 <div class="container">
-<img
-			src="https://i.imgur.com/rejrZDU.jpg"
-			style="width: 80px" align="left" />
-<h2>Autorizada J.A</h2>
 <font size="2">Relatório de pestação de serviços.</font>
 <form id="form">
 <div id="msg"></div>
