@@ -36,7 +36,7 @@ public class WServletPainel extends HttpServlet {
 		String email = request.getParameter("email");
 		String tell = request.getParameter("tell");
 		String nivel = request.getParameter("nivel");
-		System.out.println("Nome: " + nome);
+		/*System.out.println("Nome: " + nome);
 		System.out.println("Produto: " + produto);
 		System.out.println("Defeito: " + defeito);
 		System.out.println("Fabricante: " + fabricante);
@@ -53,7 +53,7 @@ public class WServletPainel extends HttpServlet {
 		System.out.println("Status: "+ status);
 		System.out.println("Email: "+ email);
 		System.out.println("Tell: " + tell);
-		System.out.println("Nivel: " + nivel);
+		System.out.println("Nivel: " + nivel);*/
 
 		
 		Painel obj = new Painel();

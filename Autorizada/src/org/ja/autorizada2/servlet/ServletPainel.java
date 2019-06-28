@@ -30,7 +30,7 @@ public class ServletPainel extends HttpServlet {
 		String cep = request.getParameter("cep");
 		String ende = request.getParameter("ende");
 		String serie = request.getParameter("serie");
-		System.out.println("Nome: " + nome);
+		/*System.out.println("Nome: " + nome);
 		System.out.println("Nivel de Urgencia: " + nivel);
 		System.out.println("Produto: " + produto);
 		System.out.println("Defeito: " + defeito);
@@ -41,7 +41,7 @@ public class ServletPainel extends HttpServlet {
 		System.out.println("Tell: " + tell);
 		System.out.println("CEP: " + cep);
 		System.out.println("Endereço: " + ende);
-		System.out.println("Nº de Serie: " + serie);
+		System.out.println("Nº de Serie: " + serie);*/
 		
 		Painel obj = new Painel();
 		obj.setNome(nome);

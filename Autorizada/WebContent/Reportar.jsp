@@ -16,7 +16,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+	<link rel="stylesheet" href="css/estilo.css">
+	
 </head>
 <body>
 <script type="text/javascript">
@@ -60,29 +61,6 @@ function gravar() {
 	xhttp.send();
 	
 }
-
-function gravado() {
-
-	
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-	    if (this.readyState == 4 && this.status == 200) {
-	       // Typical action to be performed when the document is ready:
-	       var msg = xhttp.responseText;
-	       document.getElementById("msg").innerHTML = msg;
-	       if (msg == "Gravado com sucesso.") {
-	    	   document.getElementById("msg").className = "alert alert-success";   
-	    	   
-	       }else {
-	    	   document.getElementById("msg").className = "alert alert-danger";
-	       }
-	    }
-	};
-	xhttp.open("GET", "servletPainel?"+dadosForm(), true);
-	xhttp.send();
-	
-}
-
 </script>
 <%
 Painel painel = new Painel();
@@ -181,7 +159,6 @@ if (request.getParameter("cod") != null){
 							value="<%out.print(painel.getVend());%>">
 								<option>Gasfilar</option>
 								<option>Chama Alternativa</option>
-								<option>Campeão da Construção</option>
 								<option>Só Reparos</option>
 								<option>Tendtudo</option>
 								<option>AcCoelho</option>
@@ -229,7 +206,7 @@ if (request.getParameter("cod") != null){
   </div>
   <br>
   <div align="center">
-	<button type="button" class="btn btn-primary" onclick="gravar()" >Enviar</button>
+	<button type="button" class="button button1" onclick="gravar()" >Enviar</button>	
 	</div>
 </form>
 </div>

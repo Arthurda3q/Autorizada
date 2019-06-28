@@ -15,6 +15,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/estilo.css">
+	
 	
 <script type="text/javascript">
 function dadosForm() {
@@ -74,14 +76,14 @@ function apagar() {
 				if (msg == "Gravado com sucesso") {
 					document.getElementById("msg").className = "alert alert-info";
 					document.getElementById("msg").innerHTML = "Informação apagada";
-					document.getElementById("formulario").reset();
+					document.getElementById("form").reset();
 				} else {
 					document.getElementById("msg").className = "alert alert-danger";
 					document.getElementById("msg").innerHTML = "Erro ao apagar";
 				}
 			}
 		};
-		xhttp.open("POST", "servletPainel?" + dadosForm() + "&apagar", true);
+		xhttp.open("GET", "servletPainel?" + dadosForm() + "&apagar", true);
 		xhttp.send();
 	}
 }
@@ -153,7 +155,7 @@ if (request.getParameter("cod") != null){
     <div class="form-group col-md-4 " >
       <label for="nome">Nome do Cliente/Empresa:</label> <input
 							type="text" name="nome" 
-							class="form-control" readonly id="nome"
+							class="form-control"  readonly id="nome"
 							placeholder="Nome do Cliente/Empresa"
 							value="<%out.print(painel.getNome());%>">
 							
@@ -184,7 +186,6 @@ if (request.getParameter("cod") != null){
 							value="<%out.print(painel.getVend());%>">
 								<option>Gasfilar</option>
 								<option>Chama Alternativa</option>
-								<option>Campeão da Construção</option>
 								<option>Só Reparos</option>
 								<option>Tendtudo</option>
 								<option>AcCoelho</option>
