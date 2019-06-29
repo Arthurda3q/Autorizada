@@ -37,15 +37,13 @@ function dadosForm() {
 	dados += "&defeitov=" + document.getElementById("defeitov").value;
 	dados += "&nometec=" + document.getElementById("nometec").value;
 	dados += "&codtec=" + document.getElementById("codtec").value;
-	dados += "&status=" + document.getElementById("status").value;
+	//dados += "&status=" + document.getElementById("status").value;
 	dados += "&email=" + document.getElementById("email").value;
 	dados += "&tell=" + document.getElementById("tell").value;
 	dados += "&nivel=" + document.getElementById("nivel").value;
 	return dados;
 }
-
 function gravado() {
-
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -65,56 +63,85 @@ function gravado() {
 	xhttp.send();
 	
 }
-
 function apagar() {
 	if (confirm("Realmente deseja apagar esse registro??")) {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var msg = xhttp.responseText;
-
 				if (msg == "Gravado com sucesso") {
 					document.getElementById("msg").className = "alert alert-info";
 					document.getElementById("msg").innerHTML = "Informação apagada";
 					document.getElementById("form").reset();
-				} else {
-					document.getElementById("msg").className = "alert alert-danger";
-					document.getElementById("msg").innerHTML = "Erro ao apagar";
-				}
+				} //else {
+					//document.getElementById("msg").className = "alert alert-danger";
+					//document.getElementById("msg").innerHTML = "Erro ao apagar";
+				//}
 			}
 		};
 		xhttp.open("GET", "servletPainel?" + dadosForm() + "&apagar", true);
 		xhttp.send();
+		window.setTimeout('novo()', 1000);
 	}
 }
-
 function apagarAtualizar() {
-
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var msg = xhttp.responseText;
-
+			       document.getElementById("msg").innerHTML = msg;
 			}
 		};
+		if ((document.getElementById("codtec").value != "") && (document.getElementById("nometec").value != "")
+				&& (document.getElementById("chegada").value != "")&& (document.getElementById("saida").value != "")){
 		xhttp.open("POST", "servletPainel?" + dadosForm() + "&apagar", true);
 		xhttp.send();
 		gravado();
+		window.setTimeout('novo()', 2000); 
 		//window.setTimeout('gravado()', 100); 
+		}else {
+			if (document.getElementById("codtec").value == ""){
+				document.getElementById("codtec").className= "form-control border border-danger";
+				}
+			if (document.getElementById("nometec").value == ""){
+				document.getElementById("nometec").className= "form-control border border-danger";
+				}
+			if (document.getElementById("chegada").value == ""){
+				document.getElementById("chegada").className= "form-control border border-danger";
+				}
+			if (document.getElementById("saida").value == ""){
+				document.getElementById("saida").className= "form-control border border-danger";
+				}
+			document.getElementById("msg").className = "alert alert-danger";
+			document.getElementById("msg").innerHTML = "Preencha os campos obrigatorios.";
+		}
 		
 	}
 	
 function novo(){
-	window.location.replace('Gerenciamento.jsp');
+	window.location.replace('Painel.jsp');
 }
-
-
+function act(){
+	if (document.getElementById("nometec").value != ""){
+		document.getElementById("nometec").className= "form-control";
+		}
+	if (document.getElementById("codtec").value != ""){
+		document.getElementById("codtec").className= "form-control ";
+		}
+	if (document.getElementById("chegada").value != ""){
+		document.getElementById("chegada").className= "form-control";
+		}
+	if (document.getElementById("saida").value != ""){
+		document.getElementById("saida").className= "form-control";
+		}
+	document.getElementById("msg").className = "";
+	document.getElementById("msg").innerHTML = "";
+}
 </script>	
 	
 	
 <%
 Painel painel = new Painel();
-
 if (request.getParameter("cod") != null){
 	int cod = Integer.parseInt(request.getParameter("cod"));
 	painel = painel.getPainel(cod);
@@ -231,12 +258,12 @@ if (request.getParameter("cod") != null){
  <div class="form-group col-md-3">
   <label for="usr">Data da visita/Chegada:</label> <input
 							type="datetime-local" class="form-control" id="chegada" 
-							 name="chegada">
+							 name="chegada" onkeyup="act()">
 </div>
 	<div class="form-group col-md-2">
 	<label for="usr">Saida:</label> <input
 							type="time" class="form-control" id="saida" 
-							name="saida">
+							name="saida" onkeyup="act()">
 	</div>
 	<div class="form-group col-md-3">
 	<label for="usr">Defeito Apresentado:</label> <input
@@ -246,22 +273,13 @@ if (request.getParameter("cod") != null){
 	<div class="form-group col-md-3">
 	<label for="usr">Nome do Técnico:</label> <input
 							type="text" class="form-control" id="nometec" 
-							name="nometec">
+							name="nometec" onkeyup="act()">
 	</div>
 	<div class="form-group col-md-1">
 	<label for="usr">Cod:</label> <input
 							type="number" class="form-control" id="codtec" 
-							name="codtec">
+							name="codtec" onkeyup="act()">
 	</div>
-	<div class="form-group col-md-2">
-      <label for="sel1">Status:</label> <select
-							class="form-control"  id="status" name="status">
-								<option>Concluido</option>
-								<option>Não Visitado</option>
-								<option>Reagendado</option>
-
-	</select>
-    </div>
     <div class="form-group col-md-1 d-none">
 	<label for="usr">Email:</label> <input
 							type="text" class="form-control" id="email" 

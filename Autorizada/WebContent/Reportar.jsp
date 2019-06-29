@@ -1,6 +1,6 @@
 <%@page import="org.ja.autorizada2.modelo.Painel"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,11 +16,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="css/estilo.css">
-	
+<link rel="stylesheet" href="css/estilo.css">
+
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 function dadosForm() {
 	var dados = "";
 	
@@ -39,9 +39,7 @@ function dadosForm() {
 	dados += "&cod=" + document.getElementById("cod").value;
 	return dados;
 }
-
 function gravar() {
-
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -57,158 +55,205 @@ function gravar() {
 	       }
 	    }
 	};
+	if ((document.getElementById("nome").value != "") && (document.getElementById("tell").value !="")
+			&& (document.getElementById("cep").value !="")&& (document.getElementById("vend").value !="")
+			&& (document.getElementById("fabricante").value !="")&& (document.getElementById("produto").value !="")
+			&& (document.getElementById("defeito").value != "")){
 	xhttp.open("GET", "servletPainel?"+dadosForm(), true);
 	xhttp.send();
-	
+	} else {
+		if (document.getElementById("nome").value == ""){
+		document.getElementById("nome").className= "form-control border border-danger";
+		}
+		if (document.getElementById("tell").value == ""){
+		document.getElementById("tell").className= "form-control border border-danger";
+		}
+		if (document.getElementById("cep").value == ""){
+			document.getElementById("cep").className= "form-control border border-danger";
+			}
+			if (document.getElementById("vend").value == ""){
+			document.getElementById("vend").className= "form-control border border-danger";
+			}
+			if (document.getElementById("fabricante").value == ""){
+				document.getElementById("fabricante").className= "form-control border border-danger";
+				}
+				if (document.getElementById("produto").value == ""){
+				document.getElementById("produto").className= "form-control border border-danger";
+				}
+				if (document.getElementById("defeito").value == ""){
+					document.getElementById("defeito").className= "form-control border border-danger";
+					}
+		document.getElementById("msg").className = "alert alert-danger";
+		document.getElementById("msg").innerHTML = "Preencha os campos obrigatorios.";
+	}
+}
+function act() {
+	if (document.getElementById("nome").value != ""){
+		document.getElementById("nome").className= "form-control";
+		}
+	if (document.getElementById("tell").value != ""){
+		document.getElementById("tell").className= "form-control";
+		}
+	if (document.getElementById("cep").value != ""){
+		document.getElementById("cep").className= "form-control";
+			}
+	if (document.getElementById("vend").value != ""){
+		document.getElementById("vend").className= "form-control ";
+			}
+	if (document.getElementById("fabricante").value != ""){
+		document.getElementById("fabricante").className= "form-control";
+				}
+	if (document.getElementById("produto").value != ""){
+		document.getElementById("produto").className= "form-control ";
+				}
+	if (document.getElementById("defeito").value != ""){
+		document.getElementById("defeito").className= "form-control";
+					}
 }
 </script>
-<%
-Painel painel = new Painel();
+	<%
+		Painel painel = new Painel();
+		if (request.getParameter("cod") != null) {
+			int cod = Integer.parseInt(request.getParameter("cod"));
+			painel = painel.getPainel(cod);
+		}
+	%>
 
-if (request.getParameter("cod") != null){
-	int cod = Integer.parseInt(request.getParameter("cod"));
-	painel = painel.getPainel(cod);
-}
-%>
+	<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+		<ul class="navbar-nav">
+			<a class="navbar-brand" href="index.jsp"> <img
+				src="https://i.imgur.com/taI8F9V.png" style="width: 20px"
+				align="left" />
+			</a>
 
-<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
-  <ul class="navbar-nav">
-  <a class="navbar-brand" href="index.jsp">
-  <img
-			src="https://i.imgur.com/taI8F9V.png"
-			style="width: 20px" align="left" />
-  </a>
+			<li class="nav-item active"><a class="nav-link" href="index.jsp">Inicio</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="Reportar.jsp">Abrir
+					chamado</a></li>
+			<li class="nav-item"><a class="nav-link" href="Painel.jsp">Painel</a>
+			</li>
+			<li class="nav-item"><a class="nav-link disabled" href="#">Gerenciar</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="container">
+		<font size="2">Solicitar serviços.</font>
+		<form id="form">
+			<div id="msg"></div>
+			<input type="hidden" value="<%out.print(painel.getCod());%>" id="cod" />
+			<br>
+			<div class="row">
+				<div class="form-group col-md-4">
+					<label for="nome">Nome/Empresa:</label> <input type="text"
+						name="nome" class="form-control" id="nome"
+						placeholder="Seu Nome/Empresa"
+						value="<%out.print(painel.getNome());%>"
+						onkeyup="act()">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="loc">Email:</label> <input name="email" type="text"
+						class="form-control" id="email" placeholder="Seu email"
+						value="<%out.print(painel.getEmail());%>">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="loc">Telefone:</label> <input name="tell" type="text"
+						class="form-control" id="tell" placeholder="Seu n° de telefone"
+						value="<%out.print(painel.getTell());%>"
+						onkeyup="act()">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="loc">CEP:</label> <input name="cep" type="number"
+						class="form-control" id="cep" placeholder="ex: 01001-000"
+						value="<%out.print(painel.getCep());%>"
+						onkeyup="act()">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="loc">Endereço:</label> <input name="ende" type="text"
+						class="form-control" id="ende"
+						placeholder="Endereço onde se encontra o produto"
+						value="<%out.print(painel.getEnde());%>">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="sel1">Nivel de Urgência:</label> <select
+						class="form-control" id="nivel" name="nivel"
+						value="<%out.print(painel.getNivel());%>">
+						<option></option>
+						<option>Urgente</option>
+						<option>Normal</option>
+						<option>Sem Pressa</option>
 
-    <li class="nav-item active">
-      <a class="nav-link" href="index.jsp">Inicio</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="Reportar.jsp">Abrir chamado</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="Painel.jsp">Painel</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Gerenciar</a>
-    </li>
-  </ul>
-</nav>
-<div class="container">
-<font size="2">Solicitar serviços.</font>
-<form id="form">
-<div id="msg"></div>
-<input type="hidden" value="<%out.print(painel.getCod());%>" id="cod" />
-<br>
-  <div class="row">
-    <div class="form-group col-md-4">
-      <label for="nome">Nome/Empresa:</label> <input
-							type="text" name="nome" 
-							class="form-control" id="nome"
-							placeholder="Seu Nome/Empresa"
-							value="<%out.print(painel.getNome());%>">
-    </div>
-    <div class="form-group col-md-4">
-    <label for="loc">Email:</label> <input name="email" type="text"
-							class="form-control"
-							id="email" placeholder="Seu email"
-							value="<%out.print(painel.getEmail());%>">
-    </div>
-    <div class="form-group col-md-3">
-    <label for="loc">Telefone:</label> <input name="tell" type="text"
-							class="form-control"
-							id="tell" placeholder="Seu n° de telefone"
-							value="<%out.print(painel.getTell());%>">
-    </div>
-    	<div class="form-group col-md-2">
-    <label for="loc">CEP:</label> <input name="cep" type="number"
-							class="form-control"
-							id="cep" placeholder="ex: 01001-000"
-							value="<%out.print(painel.getCep());%>">
-    </div>
-    <div class="form-group col-md-4">
-    <label for="loc">Endereço:</label> <input name="ende" type="text"
-							class="form-control"
-							id="ende" placeholder="Endereço onde se encontra o produto"
-							value="<%out.print(painel.getEnde());%>">
-    </div>
-        <div class="form-group col-md-3">
-      <label for="sel1">Nivel de Urgência:</label> <select
-							class="form-control"  id="nivel" name="nivel"
-							value="<%out.print(painel.getNivel());%>">
-								<option></option>
-								<option>Urgente</option>
-								<option>Normal</option>
-								<option>Sem Pressa</option>
-
-	</select>
-	<script>
-	document.getElementById("nivel").value = "<% out.print(painel.getNivel()); %>";
+					</select>
+					<script>
+	document.getElementById("nivel").value = "<%out.print(painel.getNivel());%>";
 	</script>
-    </div>
-    <div class="form-group col-md-2">
-    <label for="loc">N° Nota Fiscal:</label> <input name="nota" type="number"
-							class="form-control"
-							id="nota" placeholder="ex: XXXXXX"
-							value="<%out.print(painel.getNota());%>">
-    </div>
-  </div>
- <div class="row">
-    <div class="form-group col-md-3">
-      <label for="sel2">Loja que Vendeu:</label> <select
-							class="form-control"  id="vend" name="vend"
-							value="<%out.print(painel.getVend());%>">
-								<option>Gasfilar</option>
-								<option>Chama Alternativa</option>
-								<option>Só Reparos</option>
-								<option>Tendtudo</option>
-								<option>AcCoelho</option>
-	</select>
-	<script>
-	document.getElementById("vend").value = "<% out.print(painel.getVend()); %>";
+				</div>
+				<div class="form-group col-md-2">
+					<label for="loc">N° Nota Fiscal:</label> <input name="nota"
+						type="number" class="form-control" id="nota"
+						placeholder="ex: XXXXXX" value="<%out.print(painel.getNota());%>">
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-3">
+					<label for="sel2">Loja que Vendeu:</label> <select
+						class="form-control" id="vend" name="vend"
+						value="<%out.print(painel.getVend());%>"
+						onchange="act()">
+						<option>Gasfilar</option>
+						<option>Chama Alternativa</option>
+						<option>Só Reparos</option>
+						<option>Tendtudo</option>
+						<option>AcCoelho</option>
+					</select>
+					<script>
+	document.getElementById("vend").value = "<%out.print(painel.getVend());%>";
 	</script>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="sel3">Fabricante:</label> <select
-							class="form-control"  id="fabricante" name="fabricante"
-							value="<%out.print(painel.getFabricante());%>">
-								<option></option>
-								<option>Emmeti</option>
-								<option>Rinnai</option>
-								<option>Aqualimp</option>
-								<option>G-Light</option>
-								<option>Rowa</option>
-								<option>Aépio</option>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="sel3">Fabricante:</label> <select class="form-control"
+						id="fabricante" name="fabricante"
+						value="<%out.print(painel.getFabricante());%>"
+						onchange="act()">
+						<option></option>
+						<option>Emmeti</option>
+						<option>Rinnai</option>
+						<option>Aqualimp</option>
+						<option>G-Light</option>
+						<option>Rowa</option>
+						<option>Aépio</option>
 
-	</select>
-	<script>
-	document.getElementById("fabricante").value = "<% out.print(painel.getFabricante()); %>";
-	</script>
-    </div>
-    <div class="form-group col-md-2">
-    <label for="loc">Produto:</label> <input name="produto" type="text"
-							class="form-control"
-							id="produto" placeholder="Qual é o produto?"
-							value="<%out.print(painel.getProduto());%>">
-    </div>
-     <div class="form-group col-md-2">
-    <label for="loc">N° de Serie:</label> <input name="serie" type="text"
-							class="form-control" value="<%out.print(painel.getSerie());%>"
-							id="serie" placeholder="N° de Serie">
-    </div>
-    <div class="form-group col-md-3">
-    <label for="loc">Defeito:</label> <input name="defeito" type="text"
-							class="form-control"
-							id="defeito" placeholder="Qual o defeito?"
-							value="<%out.print(painel.getDefeito());%>">
-    </div>
-  
+					</select>
+					<script>
+	document.getElementById("fabricante").value = "<%out.print(painel.getFabricante());%>
+						";
+					</script>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="loc">Produto:</label> <input name="produto" type="text"
+						class="form-control" id="produto" placeholder="Qual é o produto?"
+						value="<%out.print(painel.getProduto());%>"
+						onkeyup="act()">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="loc">N° de Serie:</label> <input name="serie"
+						type="text" class="form-control"
+						value="<%out.print(painel.getSerie());%>" id="serie"
+						placeholder="N° de Serie">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="loc">Defeito:</label> <input name="defeito" type="text"
+						class="form-control" id="defeito" placeholder="Qual o defeito?"
+						value="<%out.print(painel.getDefeito());%>"
+						onkeyup="act()">
+				</div>
 
-  </div>
-  <br>
-  <div align="center">
-	<button type="button" class="button button1" onclick="gravar()" >Enviar</button>	
+
+			</div>
+			<br>
+			<div align=center>
+				<button type="button" class="button button1" onclick="gravar()">Enviar</button>
+			</div>
+		</form>
 	</div>
-</form>
-</div>
 </body>
 </html>
