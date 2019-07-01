@@ -43,6 +43,7 @@ public class Painel {
 		setCep("");
 		setEnde("");
 		setSerie("");
+		setChegada("");
 		setCod(cod);
 	}
 	
@@ -418,6 +419,7 @@ public class Painel {
 				p.setCep(rs.getString("cep"));
 				p.setEnde(rs.getString("endereco"));
 				p.setSerie(rs.getString("n_serie"));
+				
 				}
 			ps.close();
 			conexao.close();
@@ -425,8 +427,7 @@ public class Painel {
 		} catch (Exception e) {
 		}
 		return null;
-	}
-	
+	}	
 	public String getCorStatus() {
 		
 		if (nivel.contentEquals("Sem Pressa")) {

@@ -50,6 +50,6 @@ values ('Arthur',
 'Rinnai',
 'Aquecedor',
 '1515',
-'NÃ£o esquenta.');
+'Não esquenta.');
 
 -- value (?,?,?,?,?,?,?);

@@ -1,18 +1,14 @@
---SQL
-	-- Ling
---comando de DDL
--- Linguagem de definicão de dados
 create database autorizada_ja;
 use autorizada_ja;
 create table painel_concluidos (
--- chave primaria
--- código unico dentro da tabela
+
 cod 		   int primary key auto_increment,
 nome_empresa  varchar(100),
 email         varchar(100),
 tell          varchar(20),
 cep   		  varchar(20),
 endereco   	  varchar(100),
+nivel		varchar(50),
 n_fiscal	 varchar(20),
 vend 	varchar(20),
 fabricante 	varchar(20),
@@ -26,16 +22,16 @@ nome_tecnico	varchar (100),
 cod_tecnico    varchar (100)
 );	
 show tables;
-desc painel_reports;
+desc painel_concluidos;
 
---DML (Linguagem de manipulaï¿½ï¿½o de dados)
--- insert - update - delete
+
 insert into painel_concluidos(
 nome_empresa,
 email,
 tell,
 cep,
 endereco,
+nivel,
 n_fiscal,
 vend,
 fabricante,
@@ -52,6 +48,7 @@ values ('Arthur',
 '61982726392',
 '72125140',
 'Qne 14 Lote 18',
+'Urgente',
 '58485',
 'Gasfilar',
 'Rinnai',

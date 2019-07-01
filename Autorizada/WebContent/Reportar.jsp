@@ -61,6 +61,7 @@ function gravar() {
 			&& (document.getElementById("defeito").value != "")){
 	xhttp.open("GET", "servletPainel?"+dadosForm(), true);
 	xhttp.send();
+	window.setTimeout('novo()', 2000);
 	} else {
 		if (document.getElementById("nome").value == ""){
 		document.getElementById("nome").className= "form-control border border-danger";
@@ -109,6 +110,9 @@ function act() {
 	if (document.getElementById("defeito").value != ""){
 		document.getElementById("defeito").className= "form-control";
 					}
+}
+function novo(){
+	window.location.replace('index.jsp');
 }
 </script>
 	<%
