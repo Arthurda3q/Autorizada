@@ -43,6 +43,7 @@
 </nav>
 <br>
 	<div class="container">
+	<font size="2">Clique sobre o nome desejado para...</font>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
