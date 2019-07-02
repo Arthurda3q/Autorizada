@@ -228,12 +228,13 @@ function novo(){
 
 					</select>
 					<script>
-	document.getElementById("fabricante").value = "<%out.print(painel.getFabricante());%>
-						";
+	document.getElementById("fabricante").value = "<%out.print(painel.getFabricante());%>";
 					</script>
 				</div>
 				<div class="form-group col-md-2">
-					<label for="loc">Produto:</label> <input name="produto" type="text"
+					<label for="loc">Produto:</label> 
+					<img src="https://img.icons8.com/material-rounded/24/000000/about.png" 
+					width="15px" title="O nome do produto esta localizada na parte da frente do mesmo, ou na caixa."><input name="produto" type="text"
 						class="form-control" id="produto" placeholder="Qual é o produto?"
 						value="<%out.print(painel.getProduto());%>"
 						onkeyup="act()">
@@ -245,7 +246,10 @@ function novo(){
 						placeholder="N° de Serie">
 				</div>
 				<div class="form-group col-md-3">
-					<label for="loc">Defeito:</label> <input name="defeito" type="text"
+					<label for="loc">Defeito:</label>
+					<img src="https://img.icons8.com/material-rounded/24/000000/about.png" 
+					width="15px" title="Ex: Não liga, está queimado, está furado etc..">
+					 <input name="defeito" type="text"
 						class="form-control" id="defeito" placeholder="Qual o defeito?"
 						value="<%out.print(painel.getDefeito());%>"
 						onkeyup="act()">
