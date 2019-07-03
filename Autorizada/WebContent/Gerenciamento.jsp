@@ -197,7 +197,7 @@ if (request.getParameter("cod") != null){
 							
     </div>
     	<div class="form-group col-md-2">
-    <label for="loc">CEP:</label> <input name="cep"  type="number"
+    <label for="loc">CEP:</label> <input name="cep"  type="text"
 							class="form-control"
 							id="cep" readonly placeholder="ex: 01001-000"
 							value="<%out.print(painel.getCep());%>">
@@ -296,7 +296,7 @@ if (request.getParameter("cod") != null){
 	</div>
 	 <div class="form-group col-md-3">
 	<label for="usr">tell:</label> <input
-							type="number" class="form-control" id="tell" 
+							type="text" class="form-control" id="tell" 
 							name="tell" readonly value="<%out.print(painel.getTell());%>" >
 	</div>
    <div class="form-group col-md-1 d-none">
