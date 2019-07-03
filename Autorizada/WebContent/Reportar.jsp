@@ -16,10 +16,22 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/mask.js"></script>
+		<script src="js/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/jquery-3.3.1.slim.min.js"></script>
+	<script	src="js/popper.min.js"></script>
+	<script	src="js/bootstrap.min.js"></script>
+	<!-- Script JMask -->
+	<script type="text/javascript" src="js/jquery.mask.js"></script>
+	<!-- Gestor script -->
+	<script type="text/javascript" src="js/gestor.js"></script>
+	<script type="text/javascript" src="js/cep.js"></script>
+		
 <link rel="stylesheet" href="css/estilo.css">
 
 </head>
-<body>
+<body onload="mascaras()">
 	<script type="text/javascript">
 function dadosForm() {
 	var dados = "";
@@ -114,6 +126,11 @@ function act() {
 function novo(){
 	window.location.replace('index.jsp');
 }
+function mascaras() {
+	$(document).ready(function() {
+		$("#tell").mask("(00)00000-0000")
+	})
+}
 </script>
 	<%
 		Painel painel = new Painel();
@@ -150,6 +167,7 @@ function novo(){
 				<div class="form-group col-md-4">
 					<label for="nome">Nome/Empresa:</label> <input type="text"
 						name="nome" class="form-control" id="nome"
+						maxlength="100"
 						placeholder="Seu Nome/Empresa"
 						value="<%out.print(painel.getNome());%>"
 						onkeyup="act()">
@@ -157,17 +175,19 @@ function novo(){
 				<div class="form-group col-md-4">
 					<label for="loc">Email:</label> <input name="email" type="text"
 						class="form-control" id="email" placeholder="Seu email"
+						maxlength="100"
 						value="<%out.print(painel.getEmail());%>">
 				</div>
 				<div class="form-group col-md-3">
-					<label for="loc">Telefone:</label> <input name="tell" type="text"
+					<label for="telefone">Telefone:</label> <input name="tell" type="text"
+						maxlength="11" 
 						class="form-control" id="tell" placeholder="Seu n° de telefone"
 						value="<%out.print(painel.getTell());%>"
-						onkeyup="act()">
+						>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="loc">CEP:</label> <input name="cep" type="number"
-						class="form-control" id="cep" placeholder="ex: 01001-000"
+						class="form-control" id="cep" placeholder="ex: 01001-000" max="8"
 						value="<%out.print(painel.getCep());%>"
 						onkeyup="act()">
 				</div>
