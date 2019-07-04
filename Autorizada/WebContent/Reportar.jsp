@@ -186,16 +186,23 @@ function mascaras() {
 						>
 				</div>
 				<div class="form-group col-md-2">
-					<label for="loc">CEP:</label> <input name="cep" type="number"
-						class="form-control" id="cep" placeholder="ex: 01001-000" max="8"
+					<label for="loc">CEP:</label> <input name="cep" type="text"
+						class="form-control" id="cep" placeholder="ex: 01001-000"
+						maxlength="8"
 						value="<%out.print(painel.getCep());%>"
-						onkeyup="act()">
+						onkeyup="pesquisacep(this.value);">
 				</div>
 				<div class="form-group col-md-4">
-					<label for="loc">Endereço:</label> <input name="ende" type="text"
-						class="form-control" id="ende"
+					<label for="loc">Endereço:</label> <input name="rua" type="text"
+						class="form-control" id="rua"
 						placeholder="Endereço onde se encontra o produto"
 						value="<%out.print(painel.getEnde());%>">
+				</div>
+				<div class="form-group col-md-1">
+					<label for="loc">Bairro:</label> <input name="bairro" type="text"
+						class="form-control" id="bairro"
+						placeholder=".."
+						>
 				</div>
 				<div class="form-group col-md-3">
 					<label for="sel1">Nivel de Urgência:</label> <select

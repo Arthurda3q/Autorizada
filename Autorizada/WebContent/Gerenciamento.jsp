@@ -294,7 +294,7 @@ if (request.getParameter("cod") != null){
 							type="text" class="form-control" id="email" 
 							name="email" readonly value="<%out.print(painel.getEmail());%>" >
 	</div>
-	 <div class="form-group col-md-3">
+	 <div class="form-group col-md-3 d-none">
 	<label for="usr">tell:</label> <input
 							type="text" class="form-control" id="tell" 
 							name="tell" readonly value="<%out.print(painel.getTell());%>" >
